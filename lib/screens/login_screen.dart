@@ -16,7 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   _submit() {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      AuthService.login(_email, _password);
+      AuthService.login(context, _email, _password);
     }
   }
 
