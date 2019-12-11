@@ -15,7 +15,7 @@ dependencies:
   firebase_auth: ^0.14.0+5
   cloud_firestore: ^0.12.9+4
   image_picker: ^0.6.1+8
-  cached_network_image: ^1.1.2+1
+  cached_network_image: ^2.0.0-rc
   firebase_storage: ^3.0.6
   flutter_image_compress: ^0.6.3
   path_provider: ^1.4.0
