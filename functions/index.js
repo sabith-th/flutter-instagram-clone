@@ -11,7 +11,7 @@ exports.onFollowUser = functions.firestore
       .firestore()
       .collection('posts')
       .doc(userId)
-      .collection('usersPosts');
+      .collection('usersPost');
     const userFeedRef = admin
       .firestore()
       .collection('feeds')
