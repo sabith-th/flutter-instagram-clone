@@ -114,4 +114,15 @@ class DatabaseService {
     }
     return User();
   }
+
+  static Future<List<Post>> getUserPosts(String userId) async {
+    QuerySnapshot userPostsSnapshot = await postsRef
+        .document(userId)
+        .collection('usersPost')
+        .orderBy('timestamp', descending: true)
+        .getDocuments();
+    List<Post> posts =
+        userPostsSnapshot.documents.map((doc) => Post.fromDoc(doc)).toList();
+    return posts;
+  }
 }
