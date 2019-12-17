@@ -30,11 +30,11 @@ class AuthService {
     }
   }
 
-  static void logout(BuildContext context) {
+  static void logout() {
     _auth.signOut();
   }
 
-  static void login(BuildContext context, email, String password) async {
+  static void login(email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
     } catch (e) {
