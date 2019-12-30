@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/models/comment_model.dart';
+import 'package:instagram_clone/models/post_model.dart';
 import 'package:instagram_clone/models/user_data.dart';
 import 'package:instagram_clone/models/user_model.dart';
 import 'package:instagram_clone/services/database_service.dart';
@@ -9,11 +10,10 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class CommentsScreen extends StatefulWidget {
-  final String postId;
+  final Post post;
   final int likeCount;
 
-  const CommentsScreen({Key key, this.postId, this.likeCount})
-      : super(key: key);
+  const CommentsScreen({Key key, this.post, this.likeCount}) : super(key: key);
 
   @override
   _CommentsScreenState createState() => _CommentsScreenState();
@@ -89,7 +89,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
                   if (_isCommenting) {
                     DatabaseService.commentOnPost(
                         currentUserId: currentUserId,
-                        postId: widget.postId,
+                        post: widget.post,
                         comment: _commentController.text);
                     _commentController.clear();
                     setState(() {
@@ -131,7 +131,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
           ),
           StreamBuilder(
             stream: commentsRef
-                .document(widget.postId)
+                .document(widget.post.id)
                 .collection('postComments')
                 .orderBy('timestamp', descending: true)
                 .snapshots(),
